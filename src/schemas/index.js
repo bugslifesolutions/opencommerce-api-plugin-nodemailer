@@ -1,0 +1,1 @@
+// todo: not much todo here, just going to define the object container that is pass-thru to the Nodemailer create transport and check the outcome.
