@@ -1,0 +1,54 @@
+extend type ShopSettings  {
+  """ The nodemailer createTransport options object """
+  nodemailerTransportOptions: NodemailerTransportOauth2Options
+}
+
+type NodemailerTransportOauth2Options {
+  """ set to true to use pooled connections (defaults to false) instead of creating a new connection for every email"""
+  pool: Boolean
+  """ The count of maximum simultaneous connections to make against the SMTP server (defaults to 5) """
+  maxConnections: Int
+  """  Limits the message count to be sent using a single connection (defaults to 100). After maxMessages is reached the connection is dropped and a new one is created for the following messages """
+  maxMessages: Int
+  """ the hostname or IP address to connect to (defaults to ‘localhost’) """
+  host: String
+  """  the port to connect to (defaults to 587 if is secure is false or 465 if true) """
+  port: Int
+  """ When true the connection will use TLS when connecting to server. If false (the default) then TLS is used if server supports the STARTTLS extension. In most cases set this value to true if you are connecting to port 465. For port 587 or 25 keep it false
+ """
+  secure: Boolean
+  """ defines additional node.js TLSSocket options to be passed to the socket constructor, eg. {rejectUnauthorized: true} """
+  tls: TlsOptions
+  """ When true and secure is false then TLS is not used even if the server supports STARTTLS extension """
+  ignoreTLS: Boolean 
+  """ When true and secure is false then Nodemailer tries to use STARTTLS even if the server does not advertise support for it. If the connection can not be encrypted then message is not sent"""
+  requireTLS: Boolean 
+  auth: AuthOption
+}
+
+union AuthOption = OAuth2Options | PlainAuthOptions
+
+type TlsOptions {
+  """ is optional hostname for TLS validation if host was set to an IP address """
+  servername: String
+}
+
+type OAuth2Options {
+  """ oauth2 """
+  type: String
+  user: String
+  clientId: String
+  clientSecret: String
+  refreshToken: String
+  accessToken: String
+  expires: Int
+}
+
+type PlainAuthOptions {
+  """ plain """
+  type: String
+  """ The username """
+  user: String
+  """ the password for the user if normal login is used """
+  pass: String
+}

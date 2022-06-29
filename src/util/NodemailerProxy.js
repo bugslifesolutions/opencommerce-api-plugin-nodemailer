@@ -1,5 +1,4 @@
 import nodemailer from "nodemailer";
-import PlaceholderNodemailerTransportConfig from "../config.js";
 
 /**
  * @name sendEmail
@@ -12,9 +11,9 @@ import PlaceholderNodemailerTransportConfig from "../config.js";
  */
 export default async function sendEmail(context, { job, sendEmailCompleted, sendEmailFailed }) {
   const { to, shopId, ...otherEmailFields } = job.data;
+  const { nodemailerTransportOptions } = await context.queries.appSettings(context, shopId);
 
-  //todo: derive NodemailerTransportConfig from the shopId of the email job!
-  const transport = nodemailer.createTransport(PlaceholderNodemailerTransportConfig);
+  const transport = nodemailer.createTransport(nodemailerTransportOptions);
 
   transport.sendMail({ to, shopId, ...otherEmailFields }, (error) => {
     if (error) {

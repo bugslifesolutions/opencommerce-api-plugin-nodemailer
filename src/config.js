@@ -1,5 +1,6 @@
 //todo: replace with shop specific Nodemailer Transport Config.
-const NodemailerTransportConfig = {
+const Oauth2NodemailerTransportOptions = {
+    pool: true,
     host: 'smtp.gmail.com',
     port: 465,
     secure: true,
@@ -14,4 +15,4 @@ const NodemailerTransportConfig = {
     }
 }
 
-export default NodemailerTransportConfig;
+export default [Oauth2NodemailerTransportOptions];

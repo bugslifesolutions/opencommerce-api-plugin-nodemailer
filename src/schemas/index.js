@@ -1,1 +1,5 @@
-// todo: not much todo here, just going to define the object container that is pass-thru to the Nodemailer create transport and check the outcome.
+import importAsString from "@reactioncommerce/api-utils/importAsString.js";
+
+const schema = importAsString("./schema.graphql");
+
+export default [schema];
