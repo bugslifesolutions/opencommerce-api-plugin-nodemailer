@@ -1,4 +1,4 @@
-import package from "../package.json";
+import package_spec from "../package.json";
 import mutations from "./mutations/index.js";
 import policies from "./policies.json";
 import resolvers from "./resolvers/index.js";
@@ -13,7 +13,7 @@ export default async function register(app) {
   await app.registerPlugin({
     label: "Open Commerce API Plugin - Nodemailer",
     name: "opencommerce-api-plugin-nodemailer",
-    version: package.version,
+    version: package_spec.version,
     functionsByType: {
       startup: [startup]
     },
