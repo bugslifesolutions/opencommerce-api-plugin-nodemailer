@@ -1,1 +1,1 @@
-//todo: allow setting of any possible Nodemailer transport config object.
+// todo: allow setting of any possible Nodemailer transport config object.
