@@ -75,7 +75,9 @@
   },
   "release": {
     "branches": [
-      "trunk"
+      "main",
+      "alpha",
+      "beta"
     ]
   },
   "publishConfig": {
