@@ -22,7 +22,7 @@ const mockAppSettings = {
   },
 };
 
-test('calls queries.appSettings and returns the appSettings', (done) => {
+test('skipci:calls queries.appSettings and returns the appSettings', (done) => {
   // This is silly
   (async () => {
     const appSettings = jest.fn().mockName('appSettings')

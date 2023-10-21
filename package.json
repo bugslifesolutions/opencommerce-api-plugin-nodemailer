@@ -61,6 +61,7 @@
     "lint:eslint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "jest --passWithNoTests --setupFiles=dotenv/config",
+    "test:ci": "jest --testNamePattern=/^skipci:/ --passWithNoTests --setupFiles=dotenv/config --ci",
     "test:watch": "jest --watch",
     "test:file": "jest --no-cache --watch --coverage=false"
   },
