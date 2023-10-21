@@ -1,12 +1,12 @@
-import doesDatabaseVersionMatch from "@reactioncommerce/db-version-check";
-import { migrationsNamespace } from "../migrations/migrationsNamespace.js";
+import doesDatabaseVersionMatch from '@reactioncommerce/db-version-check';
+import {migrationsNamespace} from '../migrations/migrationsNamespace.js';
 
 const expectedVersion = 1;
 
 /**
  * @summary Called before startup
  * @param {Object} context Startup context
- * @returns {undefined}
+ * @return {undefined}
  */
 export default async function preStartup(context) {
   const setToExpectedIfMissing = async () => {
@@ -23,7 +23,7 @@ export default async function preStartup(context) {
     // your package exports in the `migrations` named export
     expectedVersion,
     namespace: migrationsNamespace,
-    setToExpectedIfMissing
+    setToExpectedIfMissing,
   });
 
   if (!ok) {

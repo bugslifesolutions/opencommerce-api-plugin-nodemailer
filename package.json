@@ -42,7 +42,8 @@
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "babel-plugin-transform-import-meta": "~2.2.1",
     "dotenv": "^16.3.1",
-    "eslint": "~8.51.0",
+    "eslint": "^8.52.0",
+    "eslint-config-google": "^0.14.0",
     "eslint-plugin-import": "~2.28.1",
     "eslint-plugin-jest": "~27.4.2",
     "eslint-plugin-jsx-a11y": "~6.7.1",
@@ -58,6 +59,7 @@
     "prepare": "husky install",
     "lint": "npm run lint:eslint",
     "lint:eslint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "test": "jest --passWithNoTests --setupFiles=dotenv/config",
     "test:watch": "jest --watch",
     "test:file": "jest --no-cache --watch --coverage=false"

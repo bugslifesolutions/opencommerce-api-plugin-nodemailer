@@ -1,1 +1,1 @@
-export const migrationsNamespace = "nodemailer";
+export const migrationsNamespace = 'nodemailer';

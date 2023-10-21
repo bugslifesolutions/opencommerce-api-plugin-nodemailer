@@ -1,27 +1,27 @@
 const affectedGlobalGroups = [
-  "shop manager",
-  "owner"
+  'shop manager',
+  'owner',
 ];
 
 const newGlobalPermissions = [
-  "reaction:legacy:nodemailer/update:settings"
+  'reaction:legacy:nodemailer/update:settings',
 ];
 
 /**
  * @summary migrates the database down one version
  * @param {Object} context Migration context
  * @param {Object} context.db MongoDB `Db` instance
- * @param {Function} context.progress A function to report progress, takes percent
- *   number as argument.
+ * @param {Function} context.progress A function to report progress, takes
+ * percent number as argument.
  * @return {undefined}
  */
-async function down({ db, progress }) {
+async function down({db, progress}) {
   progress(0);
 
-  await db.collection("Groups").updateMany({
-    slug: { $in: affectedGlobalGroups }
+  await db.collection('Groups').updateMany({
+    slug: {$in: affectedGlobalGroups},
   }, {
-    $pullAll: { permissions: newGlobalPermissions }
+    $pullAll: {permissions: newGlobalPermissions},
   });
 
   progress(100);
@@ -31,17 +31,17 @@ async function down({ db, progress }) {
  * @summary Performs migration up from previous data version
  * @param {Object} context Migration context
  * @param {Object} context.db MongoDB `Db` instance
- * @param {Function} context.progress A function to report progress, takes percent
- *   number as argument.
+ * @param {Function} context.progress A function to report progress, takes
+ * percent number as argument.
  * @return {undefined}
  */
-async function up({ db, progress }) {
+async function up({db, progress}) {
   progress(0);
 
-  await db.collection("Groups").updateMany({
-    slug: { $in: affectedGlobalGroups }
+  await db.collection('Groups').updateMany({
+    slug: {$in: affectedGlobalGroups},
   }, {
-    $addToSet: { permissions: { $each: newGlobalPermissions } }
+    $addToSet: {permissions: {$each: newGlobalPermissions}},
   });
 
   progress(100);
@@ -49,5 +49,5 @@ async function up({ db, progress }) {
 
 export default {
   down,
-  up
+  up,
 };
