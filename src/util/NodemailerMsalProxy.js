@@ -1,6 +1,7 @@
+import { ConfidentialClientApplication } from "@azure/msal-node";
 import nodemailer from "nodemailer";
-import { msalClientCredentialAuth } from "./MsalCustomAuth.js";
 
+const userTokens = {};
 /**
  * @name sendEmail
  * @summary Sends the provided email using the Nodemailer transport and shop's NodemailerTransportConfig
@@ -13,17 +14,21 @@ import { msalClientCredentialAuth } from "./MsalCustomAuth.js";
 export default async function sendEmail(context, { job, sendEmailCompleted, sendEmailFailed }) {
   const { to, shopId, ...otherEmailFields } = job.data;
   const { nodemailerTransportOptions } = await context.queries.appSettings(context, shopId);
-  // replicate credentials in auth.options for custom oauth2 (not Google) authentication.
-  // see https://nodemailer.com/smtp/customauth/
-
-  if (nodemailerTransportOptions.auth.method !== undefined) {
-    hackForNodemailerIssue1584(nodemailerTransportOptions.auth);
-    nodemailerTransportOptions.customAuth = {
-      msalClientCredentialAuth
-    }
-  }
 
   const transporter = nodemailer.createTransport(nodemailerTransportOptions);
+  transporter.set("oauth2_provision_cb", async (user, renew, callback) => {
+    let userToken = userTokens[user];
+    if (renew || !userToken) {
+      userToken = await getNewToken(nodemailerTransportOptions);
+      userTokens[user] = userToken;
+    }
+
+    if (!userToken) {
+      return callback(new Error("Unknown user"));
+    } else {
+      return callback(null, userToken.accessToken);
+    }
+  });
   // TODO:
   await transporter.sendMail({ to, shopId, ...otherEmailFields }, (error) => {
     if (error) {
@@ -34,8 +39,8 @@ export default async function sendEmail(context, { job, sendEmailCompleted, send
   });
 }
 
-function hackForNodemailerIssue1584(auth) {
-    // see https://github.com/nodemailer/nodemailer/issues/1584
-    auth.user = auth.user || 'placeholder';
-    auth.pass = auth.pass || 'placeholder';
+async function getNewToken(nodemailerTransportOptions) {
+  const msalConfig = { auth: nodemailerTransportOptions.auth };
+  const cca = new ConfidentialClientApplication(msalConfig);
+  return cca.acquireTokenByClientCredential({ scopes: ['https://outlook.office365.com/.default'] });
 }

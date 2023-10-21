@@ -41,6 +41,7 @@ type OAuth2Options {
   clientSecret: String
   refreshToken: String
   accessToken: String
+  authority: String 
   expires: Int
 }
 
