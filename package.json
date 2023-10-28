@@ -1,11 +1,11 @@
 {
-  "name": "@bugslifesolutions/opencommerce-opencommerce-api-plugin-nodemailer",
+  "name": "@bugslifesolutions/opencommerce-api-plugin-nodemailer",
   "description": "Nodemailer plugin for Open Commerce API",
-  "version": "0.0.0-development",
+  "version": "0.0.1",
   "main": "index.js",
   "type": "module",
   "engines": {
-    "node": ">=12.14.1"
+    "node": ">=18"
   },
   "homepage": "https://github.com/bugslifesolutions/opencommerce-api-plugin-nodemailer",
   "url": "https://github.com/bugslifesolutions/opencommerce-api-plugin-nodemailer",
@@ -30,30 +30,22 @@
     "nodemailer": "~6.9.6"
   },
   "devDependencies": {
-    "@babel/core": "~7.23.2",
-    "@babel/preset-env": "~7.23.2",
-    "@commitlint/cli": "~17.8.0",
-    "@commitlint/config-conventional": "~17.8.0",
+    "@babel/eslint-parser": "^7.22.15",
+    "@babel/plugin-syntax-import-assertions": "^7.22.5",
+    "@babel/preset-env": "^7.23.2",
+    "@commitlint/cli": "^18.0.0",
+    "@commitlint/config-conventional": "^18.0.0",
     "@reactioncommerce/babel-remove-es-create-require": "~1.0.0",
-    "@reactioncommerce/data-factory": "~1.0.1",
-    "babel-eslint": "~10.1.0",
-    "babel-jest": "~29.7.0",
-    "babel-plugin-rewire-exports": "^2.0.0",
+    "@reactioncommerce/data-factory": "^1.0.0",
+    "babel-jest": "^29.7.0",
+    "babel-plugin-rewire-exports": "^2.3.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
-    "babel-plugin-transform-import-meta": "~2.2.1",
+    "babel-plugin-transform-import-meta": "^2.2.1",
     "dotenv": "^16.3.1",
     "eslint": "^8.52.0",
-    "eslint-config-google": "^0.14.0",
-    "eslint-plugin-import": "~2.28.1",
-    "eslint-plugin-jest": "~27.4.2",
-    "eslint-plugin-jsx-a11y": "~6.7.1",
-    "eslint-plugin-node": "~11.1.0",
-    "eslint-plugin-promise": "~6.1.1",
-    "eslint-plugin-react": "~7.33.2",
-    "eslint-plugin-react-hooks": "~4.6.0",
-    "husky": "^8.0.0",
-    "jest": "~29.7.0",
-    "semantic-release": "~22.0.5"
+    "husky": "^8.0.3",
+    "jest": "^29.7.0",
+    "semantic-release": "^22.0.5"
   },
   "scripts": {
     "prepare": "husky install",
