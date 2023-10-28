@@ -1,0 +1,78 @@
+{
+  "name": "@bugslifesolutions/opencommerce-api-plugin-nodemailer",
+  "description": "Nodemailer plugin for Open Commerce API",
+  "version": "0.0.1",
+  "main": "index.js",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "homepage": "https://github.com/bugslifesolutions/opencommerce-api-plugin-nodemailer",
+  "url": "https://github.com/bugslifesolutions/opencommerce-api-plugin-nodemailer",
+  "email": "engineering@bugslifesolutions.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bugslifesolutions/opencommerce-api-plugin-nodemailer.git"
+  },
+  "author": {
+    "name": "BugsLife Solutions",
+    "email": "engineering@bugslifesolutions.com",
+    "url": "http://bugslifesolutions.com"
+  },
+  "license": "GPL-3",
+  "bugs": {
+    "url": "https://github.com/bugslifesolutions/opencommerce-api-plugin-nodemailer/issues"
+  },
+  "sideEffects": false,
+  "dependencies": {
+    "@azure/msal-node": "~2.2.0",
+    "@reactioncommerce/api-utils": "~1.17.1",
+    "nodemailer": "~6.9.6"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.22.15",
+    "@babel/plugin-syntax-import-assertions": "^7.22.5",
+    "@babel/preset-env": "^7.23.2",
+    "@commitlint/cli": "^18.0.0",
+    "@commitlint/config-conventional": "^18.0.0",
+    "@reactioncommerce/babel-remove-es-create-require": "~1.0.0",
+    "@reactioncommerce/data-factory": "^1.0.0",
+    "babel-jest": "^29.7.0",
+    "babel-plugin-rewire-exports": "^2.3.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-plugin-transform-import-meta": "^2.2.1",
+    "dotenv": "^16.3.1",
+    "eslint": "^8.52.0",
+    "husky": "^8.0.3",
+    "jest": "^29.7.0",
+    "semantic-release": "^22.0.5"
+  },
+  "scripts": {
+    "prepare": "husky install",
+    "lint": "npm run lint:eslint",
+    "lint:eslint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "jest --passWithNoTests --setupFiles=dotenv/config",
+    "test:ci": "jest --testNamePattern=/^skipci:/ --passWithNoTests --setupFiles=dotenv/config --ci",
+    "test:watch": "jest --watch",
+    "test:file": "jest --no-cache --watch --coverage=false"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "prettier": {
+    "arrowParens": "always"
+  },
+  "release": {
+    "branches": [
+      "main",
+      "alpha",
+      "beta"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
